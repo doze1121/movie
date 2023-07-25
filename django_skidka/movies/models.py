@@ -2,7 +2,7 @@ from django.db import models
 from datetime import date
 from django.urls import reverse
 
-class Catagory(models.Model):
+class Category(models.Model):
     name = models.CharField('Категории', max_length=150)
     descriotion = models.TextField('Описание')
     url = models.SlugField(max_length=160, unique=True)
@@ -53,7 +53,7 @@ class Movie(models.Model):
     budget = models.PositiveIntegerField('Бюджет', default=0, help_text='указывать сумму в долларах')
     fees_in_usa = models.PositiveIntegerField('Сборы в США', default=0, help_text='указывать сумму в долларах')
     fees_in_world = models.PositiveIntegerField('Сборы в мире', default=0, help_text='указывать сумму в долларах')
-    catagory = models.ForeignKey(Catagory, verbose_name='Категория', on_delete=models.SET_NULL, null=True) #ForeignKey отношение многих к одному
+    category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.SET_NULL, null=True) #ForeignKey отношение многих к одному
     #on_delete=models.SET_NULL данный аргумен указывает что будет происходить если мы удалим категорию и будет указывать null
     url = models.SlugField(max_length=160, unique=True)
     draft = models.BooleanField('Черновик', default=False)
@@ -63,6 +63,8 @@ class Movie(models.Model):
 
     def get_absolute_url(self):
         return reverse('movie_detail', kwargs={'slug': self.url})
+    def get_review(self):
+        return self.reviews_set.filter(parent__isnull=True)
 
     class Meta:
         verbose_name = 'Фильм'
