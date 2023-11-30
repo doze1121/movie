@@ -5,11 +5,12 @@
         <div class="img-deals col-md-4">
             <a href="{{ movie.get_absolute_url }}">
                 <img src="{{ movie.poster }}" class="img-fluid" alt="">
-              </a>
+            </a>
         </div>
         <div class="img-deal1 col-md-4">
             <a href="{{ movie.get_absolute_url }}" class="editContent">
-                {{ movie.title }}
+                <li style="list-style-type: none;">{{ movie.title }}</li>
+                <li style="list-style-type: none;">Год: {{ movie.year }}</li>
             </a>
         </div>
     </div>

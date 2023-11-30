@@ -9,20 +9,9 @@
                 </h1>
             </div>
 
-            <label for="drop" class="toggle">Menu</label>
+            <label for="drop" class="toggle">Меню</label>
             <input type="checkbox" id="drop">
             <ul class="menu mt-2">
-                <li>
-                    <div class="search-bar w3layouts-newsletter">
-                        <!-- <h3 class="sear-head editContent">Поиск...</h3> -->
-                        <form action="{% url 'search' %}" method="get" class="d-flex editContent">
-                            <input type="search" placeholder="Поиск ..." name="q"
-                                class="form-control" required="">
-                            <button type="submit" class="btn1 btn"><span class="fa fa-search"
-                                                        aria-hidden="true"></span></button>
-                        </form>
-                    </div>
-                </li>
                 <li class="active"><a href="/">Главная</a></li>
                 <li>
                     <!-- First Tier Drop Down -->
@@ -38,6 +27,17 @@
                         {% endfor %}
                     </ul>
                 </li>
+                <li>
+                    <div class="search-bar w3layouts-newsletter">
+                        <!-- <h3 class="sear-head editContent">Поиск...</h3> -->
+                        <form action="{% url 'search' %}" method="get" class="d-flex editContent">
+                            <input type="search" placeholder="Поиск ..." name="q"
+                                class="form-control" required="">
+                            <button type="submit" class="btn1 btn"><span class="fa fa-search"
+                                                        aria-hidden="true"></span></button>
+                        </form>
+                    </div>
+                </li>
                 <!-- <li><a href="contact.html"
                        style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">Вход</a>
                 </li> -->
@@ -49,7 +49,7 @@
 <!-- //header -->
 <!--/banner-->
 <div class="banner-info">
-    <p class="editContent">лучший сайт на django 3</p>
+    <p class="editContent"></p>
     <h3 class="mb-4 editContent">Фильмы и сериалы</h3>
     <div class="ban-buttons">
 

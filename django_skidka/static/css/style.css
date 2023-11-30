@@ -65,6 +65,10 @@ body img {
     -ms-border-radius: 4px;
 }
 
+.breadcrumb {
+    justify-content: center;
+}
+
 .breadcrumb,
 ol {
     margin-bottom: 0 !important;
@@ -228,6 +232,24 @@ li > a:only-child:after {
     content: '';
 }
 
+.kinobox_player {
+    position: static;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: filter 0.2s linear 0s;
+    min-height: auto;
+    max-height: none;
+    min-width: auto;
+    max-width: none;
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    .kinobox_player {
+        width: 100vw;
+    }
+  }
 
 /* Media Queries
 --------------------------------------------- */
@@ -611,7 +633,7 @@ ul.tic-info li {
 /*-- /New-Arrivals --*/
 .product-shoe-info {
     padding: 0 0 15px 0;
-    border: 1px solid #e4e4e4;
+    border: 1px solid #e4e4e400;
 }
 
 .item-info-product h4 a {
@@ -631,8 +653,8 @@ span.money {
 
 .product_price {
     margin: 1em 0 0 0;
-    padding: 1em 0 0 0;
-    border-top: 1px solid #ddd;
+    /* padding: 1em 0 0 0; */
+    /* border-top: 1px solid #ddd; */
 }
 
 ul.stars li {
@@ -839,7 +861,9 @@ ol.breadcrumb {
 }
 
 li.breadcrumb-item {
-    font-size: 0.9em;
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: bold;
     letter-spacing: 1px;
 }
 
@@ -893,8 +917,8 @@ ul.w3layouts-box-list li {
     -ms-background-size: cover;
     background-size: cover;
     position: relative;
-    height: 15em;
-    padding: 5.5em 2em 0 0;
+    height: 5em;
+    padding: 0.5em 2em 0 0;
 }
 
 .grid-img-right span.money {
@@ -913,7 +937,7 @@ ul.w3layouts-box-list li {
 }
 
 .desc1-left {
-    border: 1px solid #ddd;
+    border: 1px solid #dddddd00;
 }
 
 .desc1-right h3 {
@@ -1035,7 +1059,7 @@ h3.sear-head {
     transition: all .2s ease-in-out;
     font-family: Roboto, sans-serif;
     font-size: 16px;
-    color: #6163b9
+    color: #ff4c4c
 }
 
 @media only screen and (max-width: 767px) {
@@ -1095,17 +1119,17 @@ h3.sear-head {
     .pagination__item.active:hover
     .pagination__link {
         color: #fff;
-        background: #6658af
+        background: #ff4c4c
     }
 }
 
 .pagination__item.active .pagination__link {
     color: #fff;
-    background: #6658af
+    background: #ff4c4c
 }
 
 .pagination__item--dots .pagination__link {
-    color: #bfc0f1
+    color: #ff4c4c
 }
 
 /* --/Pagination */
@@ -1374,7 +1398,7 @@ ul.w3layouts-icons li a {
 
 /*-- to-top --*/
 a.move-top span {
-    color: #fff;
+    color: #ff4c4c;
     width: 36px;
     height: 36px;
     text-align: center;

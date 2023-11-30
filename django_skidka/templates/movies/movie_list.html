@@ -17,45 +17,20 @@
                             </a>
                         </div>
                         <div class="item-info-product">
-                            <!-- <h4 class="">
-                                <a href="{{ movie.get_absolute_url }}"
-                                   class="editContent">
-                                    {{ movie.title }}
-                                </a>
-                            </h4> -->
-
                             <div class="product_price">
                                 <div class="grid-price">
-                                    <!-- <span class="money editContent">{{ movie.tagline }}</span> -->
                                     <span class="money editContent">
                                         <a href="{{ movie.get_absolute_url }}"
                                             class="editContent">
                                     {{ movie.title }}</span>
                                 </div>
                             </div>
-                            <ul class="stars">
-                                <li><a href="#"><span class="fa fa-star"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star-half-o"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star-half-o"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star-o"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-        <div class="grid-img-right mt-4 text-right bg bg1" >
+        <div class="grid-img-right mt-4 text-right bg bg1" style="padding-right: 0px; padding-left: 55px;">
             {% include 'include/pagination.html' %}
         </div>
     </div>

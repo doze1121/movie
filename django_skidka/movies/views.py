@@ -32,6 +32,8 @@ class MoviesView(GenreYear, CategorySearch, ListView):
     model = Movie
     queryset = Movie.objects.filter(draft=False)
     paginate_by = 12
+    def get_queryset(self):
+        return super().get_queryset().order_by('-id')
 
 class MovieDetailView(GenreYear, CategorySearch, DetailView):
     """Полное описание фильма"""
@@ -69,6 +71,7 @@ class FilterMoviesView(GenreYear, CategorySearch, ListView):
             Q(genres__in=self.request.GET.getlist("genre")) |
             Q(category__in=self.request.GET.getlist("category"))
         ).distinct()
+        queryset = queryset.order_by('-id')
         return queryset
 
     def get_context_data(self, *args, **kwargs):
@@ -102,7 +105,7 @@ class AddStarRating(View):
 
 class Search(ListView):
     """Поиск"""
-    paginate_by = 13
+    paginate_by = 12
     # def get_queryset(self):
     #     return Movie.objects.filter(title__icontains=self.request.GET.get('q'))
     def get_queryset(self):

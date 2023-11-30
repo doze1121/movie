@@ -18,7 +18,7 @@
             </div>
             <div class="desc1-right col-md-6 pl-lg-4">
                 <h3 class="editContent" style="outline: none; cursor: inherit;">
-                    {{ movie.title }} онлайн смотреть бесплатно
+                    {{ movie.title }} смотреть онлайн бесплатно
                 </h3>
                 <h5 class="editContent"></h5>
                 <ul>
@@ -59,11 +59,12 @@
                     <li style="list-style: none">
                         <span><b>Сборы в мире:</b> ${{ movie.fess_in_world }}</span>
                     </li> -->
-                    <li style="list-style-type: none;"><p class="editContent" style="outline: none; cursor: inherit;">
-                        {{ movie.description|safe }}
-                    </p>
+                    <li style="list-style: none">
+                        <span><b>Год:</b> {{ movie.year }}</span></li>
+                    <li style="list-style: none">
+                        <span><b>Страна:</b> {{ movie.country }}</span>
                     </li>
-                    <li>
+                    <li style="list-style: none">
                         <form action="{% url 'add_rating' %}" method="post" name="rating">
                             <b>Рейтинг:</b>
                             {% csrf_token %}
@@ -108,7 +109,7 @@
         <div class="row sub-para-w3layouts mt-5">
 
             <h3 class="shop-sing editContent">
-                Смотреть онлайн {{ movie.title }} в хорошем качестве HD720,1080
+                Смотреть онлайн "{{ movie.title }}" в хорошем качестве HD720,1080
             </h3>
             <!-- <p>
                 {% for image in movie.movieshots_set.all %}
@@ -116,9 +117,15 @@
                          alt="{{ image.description }}">
                 {% endfor %}
             </p> -->
-            <div class="kinobox_player" style="width: 640px; height: 360px;"></div>
-            <script src="https://kinobox.tv/kinobox.min.js"></script>
-            <script>new Kinobox('.kinobox_player', {search: {query: '{{ movie.title }}'}}).init();</script>
+            <div class="kinobox_player">
+                <script src="https://kinobox.tv/kinobox.min.js"></script>
+                <script>new Kinobox('.kinobox_player', {search: {query: '{{ movie.title }}'}}).init();</script>
+                <li style="list-style-type: none;">
+                    <p class="editContent" style="outline: none; cursor: inherit;">
+                    {{ movie.description|safe }}
+                    </p>
+                </li>
+            </div>
         </div>
         <hr>
         <div class="row">
