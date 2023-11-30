@@ -41,19 +41,20 @@ class Genre(models.Model):
 
 class Movie(models.Model):
     title = models.CharField('Название', max_length=100)
-    tagline = models.CharField('Слоган', max_length=100, default='')
+    tagline = models.CharField('Слоган', max_length=100, default='', blank=True)
     description = models.TextField('Описание')
-    poster = models.ImageField('Постер', upload_to='movies/')
-    year = models.PositiveSmallIntegerField('Дата выхода', default=2019)
-    country = models.CharField('Страна', max_length=30)
-    directors = models.ManyToManyField(Actor, verbose_name='режиссер', related_name='film_director') #ManyToMany отношение многих ко многим
-    actros = models.ManyToManyField(Actor, verbose_name='актеры', related_name='film_actor')
-    genres = models.ManyToManyField(Genre, verbose_name='жанры')
-    world_premier = models.DateField('Премьера в мире', default=date.today)
-    budget = models.PositiveIntegerField('Бюджет', default=0, help_text='указывать сумму в долларах')
-    fees_in_usa = models.PositiveIntegerField('Сборы в США', default=0, help_text='указывать сумму в долларах')
-    fees_in_world = models.PositiveIntegerField('Сборы в мире', default=0, help_text='указывать сумму в долларах')
-    category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.SET_NULL, null=True) #ForeignKey отношение многих к одному
+    # poster = models.ImageField('Постер', upload_to='movies/')
+    poster = models.URLField('Ссылка на постер')
+    year = models.PositiveSmallIntegerField('Дата выхода', default=2023)
+    country = models.CharField('Страна', max_length=30, blank=True)
+    directors = models.ManyToManyField(Actor, verbose_name='режиссер', related_name='film_director', blank=True) #ManyToMany отношение многих ко многим
+    actros = models.ManyToManyField(Actor, verbose_name='актеры', related_name='film_actor', blank=True)
+    genres = models.ManyToManyField(Genre, verbose_name='жанры', blank=True)
+    world_premier = models.DateField('Премьера в мире', default=date.today, blank=True)
+    budget = models.PositiveIntegerField('Бюджет', default=0, help_text='указывать сумму в долларах', blank=True)
+    fees_in_usa = models.PositiveIntegerField('Сборы в США', default=0, help_text='указывать сумму в долларах', blank=True)
+    fees_in_world = models.PositiveIntegerField('Сборы в мире', default=0, help_text='указывать сумму в долларах', blank=True)
+    category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.SET_NULL, null=True, blank=True) #ForeignKey отношение многих к одному
     #on_delete=models.SET_NULL данный аргумен указывает что будет происходить если мы удалим категорию и будет указывать null
     url = models.SlugField(max_length=160, unique=True)
     draft = models.BooleanField('Черновик', default=False)
@@ -84,14 +85,16 @@ class MovieShots(models.Model):
         verbose_name_plural = 'Кадры из фильма'
 
 class RatingStar(models.Model):
-    value = models.PositiveSmallIntegerField('Значение', default=0)
+    """Звезда рейтинга"""
+    value = models.SmallIntegerField("Значение", default=0)
 
     def __str__(self):
-        return self.value
+        return f'{self.value}'
 
     class Meta:
-        verbose_name = 'Звезда рейтинга'
-        verbose_name_plural = 'Звезды рейтинга'
+        verbose_name = "Звезда рейтинга"
+        verbose_name_plural = "Звезды рейтинга"
+        ordering = ["-value"]
 
 class Rating(models.Model):
     ip = models.CharField('IP адресс', max_length=15)

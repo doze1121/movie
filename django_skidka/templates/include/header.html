@@ -1,17 +1,29 @@
+{% load movie_tags %}
 <header class="header">
     <div class="container-fluid px-lg-5">
         <!-- nav -->
         <nav class="py-4">
             <div id="logo">
-                <h1><a href="index.html" class="editContent"
-                       style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: Source Sans Pro;, sans-serif;">DjangoMovie</a>
+                <h1><a href="/" class="editContent"
+                       style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: Source Sans Pro, sans-serif;">DozeCinema</a>
                 </h1>
             </div>
 
             <label for="drop" class="toggle">Menu</label>
             <input type="checkbox" id="drop">
             <ul class="menu mt-2">
-                <li class="active"><a href="index.html">Главная</a></li>
+                <li>
+                    <div class="search-bar w3layouts-newsletter">
+                        <!-- <h3 class="sear-head editContent">Поиск...</h3> -->
+                        <form action="{% url 'search' %}" method="get" class="d-flex editContent">
+                            <input type="search" placeholder="Поиск ..." name="q"
+                                class="form-control" required="">
+                            <button type="submit" class="btn1 btn"><span class="fa fa-search"
+                                                        aria-hidden="true"></span></button>
+                        </form>
+                    </div>
+                </li>
+                <li class="active"><a href="/">Главная</a></li>
                 <li>
                     <!-- First Tier Drop Down -->
                     <label for="drop-2" class="toggle">Категории <span
@@ -20,14 +32,15 @@
                                                 aria-hidden="true"></span></a>
                     <input type="checkbox" id="drop-2">
                     <ul>
-                        <li><a href="moviesingle.html">Фильмы</a></li>
-                        <li><a href="moviesingle.html">Сериалы</a></li>
-                        <li><a href="moviesingle.html">Мультфильмы</a></li>
+                        {% get_categories as categories %}
+                        {% for category in categories %}
+                            <li><a href="/filter/?category={{ category.id }}">{{ category.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
-                <li><a href="contact.html"
+                <!-- <li><a href="contact.html"
                        style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">Вход</a>
-                </li>
+                </li> -->
             </ul>
         </nav>
         <!-- //nav -->
@@ -37,7 +50,7 @@
 <!--/banner-->
 <div class="banner-info">
     <p class="editContent">лучший сайт на django 3</p>
-    <h3 class="mb-4 editContent">Все о кино</h3>
+    <h3 class="mb-4 editContent">Фильмы и сериалы</h3>
     <div class="ban-buttons">
 
 
